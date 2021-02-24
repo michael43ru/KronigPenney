@@ -1,6 +1,6 @@
 function E = KronigPenney(k,m,a,b,U0,Emax)
 %E_peak = [0, 0.15, 0.84, 1.925, 3.07, 3.99, 5.46, 7.235, 8.88, 10.105, 12.02, 14.3575, 16.745,';
-E_0 = [0:0.001:Emax];
+E_0 = [U0:0.001:Emax];
 E_peak = 0;
 K0 = K(E_0, m, a, b, U0);
 for i = 2:(length(E_0)-1)
