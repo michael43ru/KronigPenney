@@ -1,7 +1,7 @@
 function E = KronigPenney(k,m,a,b,U0,Emax)
 %E_peak = [0, 0.15, 0.84, 1.925, 3.07, 3.99, 5.46, 7.235, 8.88, 10.105, 12.02, 14.3575, 16.745,';
-E_0 = [U0:0.001:Emax];
-E_peak = 0;
+E_0 = [U0:0.00001:Emax];
+E_peak = U0;
 K0 = K(E_0, m, a, b, U0);
 for i = 2:(length(E_0)-1)
     if (not(isreal(K0(i))) & isreal(K0(i+1))) | (isreal(K0(i)) & not(isreal(K0(i+1))))
@@ -20,7 +20,7 @@ for i = 1:length(k)
     for j = 2:2:(length(E_peak)-1)
         E_a = E_peak(j);
         E_b = E_peak(j+1);
-        while ((abs(K(E_a, m, a, b, U0)) - abs(k(i)))*(abs(K(E_b, m, a, b, U0)) - abs(k(i))) <= 0) & (abs((abs(K(E_a, m, a, b, U0)) - abs(k(i)))/abs(k(i)))) > 0.004 | (abs(E_a - E_b) > 0.01)
+        while ((abs(K(E_a, m, a, b, U0)) - abs(k(i)))*(abs(K(E_b, m, a, b, U0)) - abs(k(i))) <= 0) & (abs((abs(K(E_a, m, a, b, U0)) - abs(k(i)))/abs(k(i)))) > 0.004 | (abs(E_a - E_b) > 0.0001)
             E_c = (E_a + E_b) / 2;
             if (abs(K(E_c, m, a, b, U0)) - abs(k(i)))*(abs(K(E_a, m, a, b, U0)) - abs(k(i))) >= 0
                 E_a = E_c;
